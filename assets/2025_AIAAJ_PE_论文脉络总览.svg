@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1880" viewBox="0 0 2400 1880"><title>物理嵌入式迁移学习论文完整脉络</title><desc>从二维翼型预训练、展向升力估计和后掠理论转换，到三维表面残差学习，以及理想与实际实验结果的区分。</desc><rect width="2400" height="1880" fill="#F7F9FC"/>
+<text x="65" y="86.0" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="50" fill="#152D45">物理嵌入式迁移学习：整篇论文究竟做了什么</text>
+<text x="68" y="130.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#526477">Yang 等 · AIAA Journal 2025 · 基于论文方法与实验重绘；数值来自原表 6–9</text>
+<rect x="65" y="160" width="2270" height="118" rx="16" fill="#EAF1F7" stroke="none" stroke-width="2"/>
+<text x="90" y="207.4" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="30" fill="#1265A8">研究问题</text>
+<text x="275" y="210.92000000000002" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="34" fill="#152D45">三维 RANS 数据昂贵 → 先利用便宜的二维知识，再用三维样本学习剩余修正</text>
+<text x="275" y="252.12" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="24" fill="#526477">理论脉络：二维／三维等价与后掠理论 → 2023 翼型到机翼迁移 → 本文加入 RANS、SLD 估计及联合表面修正</text>
+<text x="65" y="339.92" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="34" fill="#152D45">A  离线准备与训练</text>
+<rect x="65" y="370" width="1065" height="230" rx="16" fill="#FFFFFF" stroke="#D4DFE9" stroke-width="2"/>
+<rect x="65" y="370" width="8" height="230" rx="3" fill="#1265A8" stroke="none" stroke-width="2"/>
+<text x="91" y="422.16" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="32" fill="#1265A8">① 二维预训练：先掌握局部翼型响应</text>
+<text x="91" y="476.64" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="28" fill="#152D45">22,104 个二维翼型 RANS 样本；表面 321 点</text>
+<text x="91" y="519.64" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="28" fill="#152D45">翼型几何 + Ma、Re、截面升力 → 1D U-Net Aθ → Cp、Cf</text>
+<text x="91" y="562.64" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="28" fill="#152D45">机翼训练阶段固定 Aθ 参数，复用它的表面预测能力</text>
+<rect x="1190" y="370" width="1145" height="230" rx="16" fill="#FFFFFF" stroke="#D4DFE9" stroke-width="2"/>
+<rect x="1190" y="370" width="8" height="230" rx="3" fill="#197C70" stroke="none" stroke-width="2"/>
+<text x="1216" y="422.16" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="32" fill="#197C70">② 三维学习：学习两层残差</text>
+<text x="1216" y="476.64" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="28" fill="#152D45">1,842 个三维机翼 RANS 样本；表面网格 321 × 101</text>
+<text x="1216" y="519.64" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="28" fill="#152D45">FNN Hψ：修正 VLM 的展向升力；ResNet U-Net Rφ：修正表面分布</text>
+<text x="1216" y="562.64" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="28" fill="#152D45">三维 CFD 为训练标签；新机翼预测时不需要其三维 CFD</text>
+<text x="65" y="677.92" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="34" fill="#152D45">B  新机翼的一次预测（采用组合 SLD 的实际可用路径）</text>
+<rect x="65" y="735" width="330" height="340" rx="16" fill="#FFFFFF" stroke="#D4DFE9" stroke-width="2"/>
+<rect x="65" y="735" width="8" height="340" rx="3" fill="#1265A8" stroke="none" stroke-width="2"/>
+<text x="91" y="787.16" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="32" fill="#1265A8">① 输入</text>
+<text x="91" y="839.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">机翼表面几何 G</text>
+<text x="91" y="882.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">自由来流 Ma、迎角 α</text>
+<text x="91" y="925.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">以及文中固定的条件</text>
+<text x="91" y="968.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45"></text>
+<text x="91" y="1011.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">取 101 个展向截面</text>
+<rect x="450" y="735" width="415" height="340" rx="16" fill="#FFFFFF" stroke="#D4DFE9" stroke-width="2"/>
+<rect x="450" y="735" width="8" height="340" rx="3" fill="#AE6020" stroke="none" stroke-width="2"/>
+<text x="476" y="787.16" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="32" fill="#AE6020">② 先估计升力分布</text>
+<text x="476" y="839.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">SLD = 各截面的升力系数</text>
+<text x="476" y="882.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">VLM(G, Ma, α)</text>
+<text x="476" y="925.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">       + FNN 残差 Hψ</text>
+<text x="476" y="968.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">       ↓</text>
+<text x="476" y="1011.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">得到 101 个截面载荷</text>
+<rect x="920" y="735" width="515" height="340" rx="16" fill="#FFFFFF" stroke="#D4DFE9" stroke-width="2"/>
+<rect x="920" y="735" width="8" height="340" rx="3" fill="#1265A8" stroke="none" stroke-width="2"/>
+<text x="946" y="787.16" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="32" fill="#1265A8">③ 构造二维先验</text>
+<text x="946" y="839.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">后掠理论：转换几何与工况</text>
+<text x="946" y="882.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">y / cosΛ；Ma cosΛ；CL / cos²Λ</text>
+<text x="946" y="925.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">Re(2D) = Re(3D) · (cη/c)cosΛ</text>
+<text x="946" y="968.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">       ↓  固定的二维模型 Aθ</text>
+<text x="946" y="1011.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">得到各截面 Cp、Cf</text>
+<text x="946" y="1054.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">       ↓  乘 cos²Λ 并拼接为 B</text>
+<rect x="1490" y="735" width="395" height="340" rx="16" fill="#FFFFFF" stroke="#D4DFE9" stroke-width="2"/>
+<rect x="1490" y="735" width="8" height="340" rx="3" fill="#197C70" stroke="none" stroke-width="2"/>
+<text x="1516" y="787.16" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="32" fill="#197C70">④ 三维残差网络</text>
+<text x="1516" y="839.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">Rφ 同时读取所有截面</text>
+<text x="1516" y="882.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">输入：B + G + Ma、α</text>
+<text x="1516" y="925.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">学习：真实三维量 − B</text>
+<text x="1516" y="968.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45"></text>
+<text x="1516" y="1011.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">补充翼根／翼尖效应、</text>
+<text x="1516" y="1054.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">横流及黏性等剩余差异</text>
+<rect x="1940" y="735" width="395" height="340" rx="16" fill="#FFFFFF" stroke="#D4DFE9" stroke-width="2"/>
+<rect x="1940" y="735" width="8" height="340" rx="3" fill="#6D56A8" stroke="none" stroke-width="2"/>
+<text x="1966" y="787.16" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="32" fill="#6D56A8">⑤ 输出与积分</text>
+<text x="1966" y="839.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">预测表面量 = B + Rφ</text>
+<text x="1966" y="882.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">Cp、Cf,sw、Cf,z</text>
+<text x="1966" y="925.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">表面场 321 × 101 × 3</text>
+<text x="1966" y="968.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">       ↓  表面积分</text>
+<text x="1966" y="1011.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">升力、阻力、俯仰力矩</text>
+<text x="1966" y="1054.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">并非完整三维体流场</text>
+<polyline points="400,905 442,905" fill="none" stroke="#526477" stroke-width="3"/>
+<polygon points="442,905 431.4690092573155,910.7531064632504 431.4690092573155,899.2468935367496" fill="#526477"/>
+<polyline points="870,905 912,905" fill="none" stroke="#526477" stroke-width="3"/>
+<polygon points="912,905 901.4690092573155,910.7531064632504 901.4690092573155,899.2468935367496" fill="#526477"/>
+<polyline points="1440,905 1482,905" fill="none" stroke="#526477" stroke-width="3"/>
+<polygon points="1482,905 1471.4690092573155,910.7531064632504 1471.4690092573155,899.2468935367496" fill="#526477"/>
+<polyline points="1890,905 1932,905" fill="none" stroke="#526477" stroke-width="3"/>
+<polygon points="1932,905 1921.4690092573155,910.7531064632504 1921.4690092573155,899.2468935367496" fill="#526477"/>
+<polyline points="1100,600 1100,620 1177,620 1177,725" fill="none" stroke="#1265A8" stroke-width="3" stroke-dasharray="9 8"/>
+<polygon points="1177,725 1171.2468935367497,714.4690092573155 1182.7531064632503,714.4690092573155" fill="#1265A8"/>
+<text x="1205" y="720.24" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="23" fill="#1265A8">固定模型</text>
+<polyline points="1800,600 1800,690 1687,690 1687,725" fill="none" stroke="#197C70" stroke-width="3" stroke-dasharray="9 8"/>
+<polygon points="1687,725 1681.2468935367497,714.4690092573155 1692.7531064632503,714.4690092573155" fill="#197C70"/>
+<text x="1730" y="720.24" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="23" fill="#197C70">已训练模型</text>
+<polyline points="230,1075 230,1130 1687,1130 1687,1084" fill="none" stroke="#526477" stroke-width="3"/>
+<polygon points="1687,1084 1692.7531064632503,1094.5309907426845 1681.2468935367497,1094.5309907426845" fill="#526477"/>
+<rect x="660" y="1107" width="680" height="46" rx="0" fill="#F7F9FC" stroke="none" stroke-width="2"/>
+<text x="678" y="1135.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#526477">几何与来流条件也直接进入残差网络</text>
+<text x="65" y="1205.12" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="24" fill="#526477">实线：预测数据流    虚线：离线训练得到的模型    Λ：四分之一弦线后掠角    Cf,z 的先验基线置零</text>
+<text x="65" y="1284.92" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="34" fill="#152D45">C  论文如何证明有效：理想参照与实际预测必须分开读</text>
+<rect x="65" y="1320" width="1100" height="283" rx="16" fill="#FFFFFF" stroke="#D4DFE9" stroke-width="2"/>
+<rect x="65" y="1320" width="8" height="283" rx="3" fill="#1265A8" stroke="none" stroke-width="2"/>
+<text x="91" y="1372.16" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="32" fill="#1265A8">受控消融：使用真实 SLD（表 6）</text>
+<text x="91" y="1424.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">Cp 误差：无迁移 1.08% → 直接迁移 0.75% → 物理嵌入 0.66%</text>
+<text x="91" y="1467.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">解释：二维知识有效；后掠转换进一步有效</text>
+<text x="91" y="1510.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">真实 SLD 来自测试翼的三维 CFD，属于诊断用理想参照</text>
+<text x="91" y="1553.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">升力误差降低 79.0% 不能直接视为新机翼预测性能</text>
+<rect x="1225" y="1320" width="1110" height="283" rx="16" fill="#FFFFFF" stroke="#D4DFE9" stroke-width="2"/>
+<rect x="1225" y="1320" width="8" height="283" rx="3" fill="#197C70" stroke="none" stroke-width="2"/>
+<text x="1251" y="1372.16" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="32" fill="#197C70">可用结果：组合估计 SLD（表 8）</text>
+<text x="1251" y="1424.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">Cp 误差 0.77%：相对无迁移降低 29.0%</text>
+<text x="1251" y="1467.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">CL 的 MAE 0.00481：降低 40.5%；CD 的 MAE 0.000311</text>
+<text x="1251" y="1510.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">数据效率：研究范围内，达到基准精度所需机翼样本不到一半</text>
+<text x="1251" y="1553.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#152D45">预测成本：VLM 约 2.2 秒 + 网络 &lt; 0.1 秒</text>
+<rect x="65" y="1650" width="2270" height="136" rx="16" fill="#EDF2F6" stroke="none" stroke-width="2"/>
+<text x="90" y="1699.4" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="30" fill="#152D45">最终贡献</text>
+<text x="275" y="1701.16" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="32" fill="#152D45">减少昂贵三维样本需求，并把“未知 SLD”这一应用缺口补上</text>
+<text x="275" y="1748.88" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="26" fill="#526477">证据边界：单段翼、指定参数范围、稳态 RANS 标签；尚未证明复杂全机、分布外或优化闭环的可靠性</text>
+<text x="65" y="1840.24" font-family="Heiti SC,Microsoft YaHei,Noto Sans CJK SC,sans-serif" font-size="23" fill="#526477">图中 Cp 百分数沿用论文相对误差口径；非逐点相对误差。本文分析文档含公式、逐节脉络、实验解释与相关文献。</text>
+</svg>
