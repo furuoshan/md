@@ -1,0 +1,1 @@
+（1）推理任务，包括 Hendrycks 的 MATH（Hendrycks et al., 2021）和 DROP（Dua et al., 2019）；（2）长上下文理解任务，包括 LongBench（Bai et al., 2024）中的 HotpotQA（Yang et al., 2018）、MuSiQue（Trivedi et al., 2022）和 2WikiMultiHopQA（Ho et al., 2020）；（3）编码任务，包括 MBPP（Austin et al., 2021）、HumanEval（Chen et al., 2021）和 LiveCodeBench（LCB）的“测试输出预测”子任务（Jain et al., 2024）
